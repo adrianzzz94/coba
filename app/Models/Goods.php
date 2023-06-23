@@ -9,4 +9,7 @@ class Goods extends Model
 {
     use HasFactory;
     protected $guarded = ['id', 'timestamps'];
+    protected $casts = [
+        'id' => 'string',
+    ];
 }
