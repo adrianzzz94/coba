@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    $data=DB::table('data_user')->first();
+    $data = DB::table('data_user')->first();
     dd($data);
     return view('welcome');
 });
+
+//test galih
