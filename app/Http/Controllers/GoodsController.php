@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Goods;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GoodsController extends Controller
 {
@@ -11,8 +12,14 @@ class GoodsController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   //query from model
+        // $goods = Goods::all();
+        //dd($goods);
+        //query builder untuk ambil data
+        $goodsbuilder = db::table('goods')->get();
+        $coba = 10;
+        // dd($goodsbuilder);                    //akan dipakai di view
+        return view('pages.goods.goods', compact('goodsbuilder', 'coba'));
     }
 
     /**
@@ -44,7 +51,7 @@ class GoodsController extends Controller
      */
     public function edit(Goods $goods)
     {
-        //
+        return view('pages.goods.edit', compact('goods'));
     }
 
     /**
@@ -52,7 +59,13 @@ class GoodsController extends Controller
      */
     public function update(Request $request, Goods $goods)
     {
-        //
+        dd('test');
+        $goods->update([
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
+        return redirect()->route('goods');
     }
 
     /**

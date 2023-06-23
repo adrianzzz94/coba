@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\GoodsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +15,25 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    $data = DB::table('data_user')->first();
-    dd($data);
+
     return view('welcome');
 });
+
+//Get dipakai untuk routes yg hanya berhubungan untuk memanggil data tanpa pemrosesan ke dlm database
+
+//Patch / Put digunakan untuk mengupdate data
+
+//Delete untuk menghapus data
+
+//Routes Goods Index 
+Route::get('/goods', [GoodsController::class, 'index'])->name('goods');
+
+// Routes Edit
+Route::get('/goods/{goods}/edit', [GoodsController::class, 'edit'])->name('goods.edit');
+
+Route::patch('/goods/{goods}', [GoodsController::class, 'update'])->name('goods.update');
+
+
 
 //test galihiii
 //test galihhh
